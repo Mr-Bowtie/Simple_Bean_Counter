@@ -65,6 +65,7 @@ group :development do
   gem 'annotate'
   gem 'guard'
   gem 'guard-livereload'
+  gem 'spring-commands-rspec'
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
