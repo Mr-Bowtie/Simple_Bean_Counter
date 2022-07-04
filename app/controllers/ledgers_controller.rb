@@ -1,36 +1,36 @@
-class InfoSheetsController < ApplicationController
+class LedgersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_info_sheet, only: %i[show edit update destroy]
+  before_action :set_ledger, only: %i[show edit update destroy]
 
   def index
-    @info_sheets = current_user.info_sheets
+    @ledgers = current_user.ledgers
   end
 
   def show
-    @info_sheet
+    @ledger
   end
 
   def new
-    @info_sheet = InfoSheet.new
+    @ledger = InfoSheet.new
   end
 
   def create 
-    @info_sheet = current_user.info_sheets.build(info_sheet_params)
+    @ledger = current_user.ledgers.build(ledger_params)
 
-    if @info_sheet.save 
-      redirect_to info_sheets_path
+    if @ledger.save 
+      redirect_to ledgers_path
     end
   end
 end
 
 private
 
-  def info_sheet_params
-    params.require(:info_sheet).permit(:title)
+  def ledger_params
+    params.require(:ledger).permit(:title)
   end
 
-  def set_info_sheet 
-    @info_sheet = InfoSheet.find(params[:id])
+  def set_ledger 
+    @ledger = InfoSheet.find(params[:id])
   end
 
 # class ModelsController < ApplicationController

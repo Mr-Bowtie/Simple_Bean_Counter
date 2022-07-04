@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: info_sheets
+# Table name: ledgers
 #
 #  id         :bigint           not null, primary key
 #  title      :string
@@ -10,12 +10,14 @@
 #
 # Indexes
 #
-#  index_info_sheets_on_user_id  (user_id)
+#  index_ledgers_on_user_id  (user_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (user_id => users.id)
 #
-class InfoSheet < ApplicationRecord
-  belongs_to :user
+require 'rails_helper'
+
+RSpec.describe Ledger, type: :model do
+  pending "add some examples to (or delete) #{__FILE__}"
 end
