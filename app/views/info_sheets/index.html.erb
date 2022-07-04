@@ -1,0 +1,9 @@
+<h1>Info Sheets</h1>
+<% @info_sheets.each do |sheet|  %>
+  <p>
+  <%= link_to "#{sheet.title}", sheet %>
+  </p>
+<% end %>
+
+  <%= link_to "Create new", new_info_sheet_path  %>
+

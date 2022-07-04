@@ -26,7 +26,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one :info_sheet
+  has_many :info_sheets
   has_many :expenses
   has_many :incomes
 end
