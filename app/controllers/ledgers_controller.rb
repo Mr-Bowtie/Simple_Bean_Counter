@@ -11,7 +11,7 @@ class LedgersController < ApplicationController
   end
 
   def new
-    @ledger = InfoSheet.new
+    @ledger = Ledger.new
   end
 
   def create 
@@ -30,7 +30,7 @@ private
   end
 
   def set_ledger 
-    @ledger = InfoSheet.find(params[:id])
+    @ledger = Ledger.find(params[:id])
   end
 
 # class ModelsController < ApplicationController
