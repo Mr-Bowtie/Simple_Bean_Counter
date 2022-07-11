@@ -46,8 +46,6 @@ RSpec.describe Income, type: :model do
   it "is invalid without an amount" do
     income = Income.new(
       amount: nil,
-      period: @valid_period,
-      user_id: @user.id,
     )
 
     income.valid?
@@ -56,9 +54,7 @@ RSpec.describe Income, type: :model do
 
   it "is invalid without a period" do
     income = Income.new(
-      amount: @valid_amount,
       period: nil,
-      user_id: @user.id,
     )
 
     income.valid?
@@ -67,8 +63,6 @@ RSpec.describe Income, type: :model do
 
   it "is invalid without a user" do
     income = Income.new(
-      amount: @valid_amount,
-      period: @valid_period,
       user_id: nil,
     )
 
@@ -79,8 +73,6 @@ RSpec.describe Income, type: :model do
     it "is invalid when it is a float" do
       income = Income.new(
         amount: @invalid_amount_float,
-        period: @valid_period,
-        user_id: @user.id,
       )
 
       income.valid?
@@ -90,8 +82,6 @@ RSpec.describe Income, type: :model do
     it "is invalid when it is a string" do
       income = Income.new(
         amount: @invalid_amount_string,
-        period: @valid_period,
-        user_id: @user.id,
       )
 
       income.valid?
