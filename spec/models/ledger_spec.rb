@@ -19,5 +19,35 @@
 require 'rails_helper'
 
 RSpec.describe Ledger, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "is valid with a title and a user" do 
+    @user = User.create(
+      email: "valid@test.com",
+      password: "123456",
+      password_confirmation: "123456",
+    )
+    ledger = Ledger.new(
+      title: "test",
+      user_id: @user.id
+    )
+
+    expect(ledger).to be_valid
+  end
+
+  it "is invalid without a title" do
+    ledger = Ledger.new(
+      title: nil
+    )  
+
+    ledger.valid? 
+    expect(ledger.errors[:title]).to include("can't be blank")
+  end
+  it "is invalid without a user" do 
+    ledger = Ledger.new(
+      user_id: nil 
+    )
+
+    ledger.valid?
+    expect(ledger.errors[:user]).to include("must exist")
+  end
+
 end
