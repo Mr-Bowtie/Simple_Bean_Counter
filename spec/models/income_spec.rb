@@ -65,10 +65,11 @@ RSpec.describe Income, type: :model do
     income = Income.new(
       user_id: nil,
     )
-
+ 
     income.valid?
     expect(income.errors[:user]).to include("must exist")
   end
+
   context "when an amount is not an integer" do
     it "is invalid when it is a float" do
       income = Income.new(
@@ -88,4 +89,38 @@ RSpec.describe Income, type: :model do
       expect(income.errors[:amount]).to include("is not a number")
     end
   end
+
+  context "when generating pay periods" do
+    context "that are upcoming" do
+      let(:income) {Income.new(amount: @valid_amount, user_id: @user.id)}
+      let(:start_date) { Time.zone.now }
+      it "creates a pay period range one day out from selected date" do 
+        income.period = 0
+
+        expect(income.generate_pay_range(start_date)).to eql([start_date, (start_date + 1.day)]) 
+      end
+      it "creates a pay period range one week out from selected date" do 
+        income.period = 1
+
+        expect(income.generate_pay_range(start_date)).to eql([start_date, (start_date + 1.week)]) 
+      end
+      it "creates a pay period range two weeks out from selected date" do
+        income.period = 2
+
+        expect(income.generate_pay_range(start_date)).to eql([start_date, (start_date + 2.weeks)]) 
+      end
+      it "creates a pay period range one month out from selected date" do
+        income.period = 3
+
+        expect(income.generate_pay_range(start_date)).to eql([start_date, (start_date + 1.month)]) 
+      end
+    end
+
+    
+    context "that span multiple pay dates" do 
+
+    end
+
+  end
+
 end
